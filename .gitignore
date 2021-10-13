@@ -1,0 +1,14 @@
+.idea/
+.gradle/
+build/
+*.iml
+classes/
+node_modules/
+out/
+yarn.lock
+yarn-error.log
+**/dist/file/
+**/dist/cache/
+**/dist/index/
+**/dist/web/
+

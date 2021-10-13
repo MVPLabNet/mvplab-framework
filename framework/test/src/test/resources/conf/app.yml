@@ -1,0 +1,11 @@
+app:
+  name: test
+  language: en
+  env: DEV
+
+database:
+  url: jdbc:hsqldb:mem:db;sql.syntax_mys=true
+  createTableEnabled: true
+  showSQLEnabled: true
+  dialect: org.hibernate.dialect.HSQLDialect
+  driver: org.hsqldb.jdbc.JDBCDriver

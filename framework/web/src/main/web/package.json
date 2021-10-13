@@ -1,0 +1,31 @@
+{
+    "name": "web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "release": "gulp release"
+    },
+    "author": "jweb.app",
+    "license": "AGLP",
+    "dependencies": {
+        "respond.js": "^1.4.2",
+        "bootstrap": "^3.3.7",
+        "font-awesome": "^4.7.0",
+        "jquery": "^1.12.1",
+        "slick-carousel": "^1.8.1"
+    },
+    "devDependencies": {
+        "del": "^2.2.2",
+        "gulp": "^3.9.1",
+        "gulp-css-useref": "^0.0.1",
+        "gulp-csso": "^3.0.0",
+        "gulp-filter": "^5.1.0",
+        "gulp-if": "^2.0.2",
+        "gulp-resources": "^0.5.0",
+        "gulp-rev-all": "^0.9.7",
+        "gulp-uglify": "^2.1.0",
+        "gulp-useref": "^3.1.5",
+        "yargs": "^7.0.2"
+    }
+}

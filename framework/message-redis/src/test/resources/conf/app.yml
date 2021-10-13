@@ -1,0 +1,8 @@
+app:
+  name: test
+  language: en
+  excludeModules:
+    - module1
+
+log:
+  level: DEBUG

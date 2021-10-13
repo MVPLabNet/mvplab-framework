@@ -1,0 +1,23 @@
+${entity.name}.create=New
+${entity.name}.create${entity.type}=New ${entity.shortName}
+${entity.name}.save=Save
+${entity.name}.view=View
+${entity.name}.view${entity.type}=View ${entity.shortName}
+${entity.name}.update=Edit
+${entity.name}.update${entity.type}=Edit ${entity.shortName}
+${entity.name}.delete=Remove
+${entity.name}.action=Action
+${entity.name}.search=Search
+${entity.name}.list=${entity.shortName}s
+${entity.name}.cancel=Cancel
+${entity.name}.deleteTip=Are you sure to remove the selected ${entity.shortName}s?
+${entity.name}.deleteSuccess=Removed Successfully
+${entity.name}.deleteHint=Confirmation
+
+#foreach($member in $entity.members)
+${entity.name}.${member.name}=${member.name}
+#end
+
+#foreach($member in $validateMembers)
+${entity.name}.${member.name}Rule=${member.name} is required
+#end

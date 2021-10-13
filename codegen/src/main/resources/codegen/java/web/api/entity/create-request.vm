@@ -1,0 +1,30 @@
+package $packageName;
+
+#foreach ($importRef in $importRefs)
+import $importRef;
+#end
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
+
+/**
+* @author chi
+*/
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Create${entity.type}Request {
+#foreach ($member in $entity.members)
+    #if (!$member.name.equals("createdTime") && !$member.name.equals("updatedTime") && !$member.name.equals("createdBy") && !$member.name.equals("updatedBy"))
+        #foreach ($anno in $member.annotations)
+            #if (!$anno.isConstraints)
+                $anno.definition
+            #end
+        #end
+    @XmlElement(name="$member.name")
+    public $member.type $member.name;
+    #end
+#end
+@NotEmpty
+@XmlElement(name="requestBy")
+public String requestBy;
+}

@@ -1,0 +1,21 @@
+package $packageName;
+
+#foreach ($importRef in $importRefs)
+import $importRef;
+#end
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
+/**
+* @author chi
+*/
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ${entity.type}Response {
+@XmlElement(name="$entity.id.name")
+public $entity.id.type $entity.id.name;
+#foreach ($member in $entity.members)
+@XmlElement(name="$member.name")
+public $member.type $member.name;
+#end
+}

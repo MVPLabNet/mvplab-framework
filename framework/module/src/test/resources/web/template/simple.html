@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div j:innerHtml="html"></div>
+<div j:innerText="html"></div>
+<ul j:if="model.list != null" j:disabled="disabled" class="list" j:class="active?'active':''">
+    <li j:for="item:model.list.items" j:innerText="item">
+    </li>
+</ul>
+</body>
+</html>

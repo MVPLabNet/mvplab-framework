@@ -1,0 +1,14 @@
+.setup_title {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.setup__database-addition {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+.setup__database-addition.active {
+    height: 292px;
+}

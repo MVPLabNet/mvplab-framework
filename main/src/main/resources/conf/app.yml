@@ -1,0 +1,50 @@
+app:
+  name: test
+  language: zh-CN
+  supportLanguages:
+    - zh-CN
+    - en-US
+  env: DEV
+  host: 127.0.0.1
+  port: 8080
+
+page-web:
+  theme: cerulean
+  cacheEnabled: false
+
+database:
+  url: jdbc:mysql://localhost:3306/main?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: root
+  password:
+  createTableEnabled: true
+  showSQLEnabled: true
+
+email:
+  url: http://localhost
+
+web:
+  cacheEnabled: false
+  theme: default
+  roots:
+    - ./main/src/main/web
+    - ./main/src/main/resources/web
+    - ./core/admin/src/main/dist/web
+    - ./core/web/src/main/web
+    - ./module/email/email-admin/src/main/dist/web
+    - ./module/user-admin/src/main/dist/web
+    - ./module/user-web/src/main/web
+    - ./module/captcha-web-simple/src/main/web
+    - ./module/pincode-web/src/main/web
+    - ./module/file-admin/src/main/dist/web
+    - ./module/page-web/src/main/web
+    - ./module/page-admin/src/main/dist/web
+    - ./module/comment-admin/src/main/dist/web
+    - ./module/comment-web/src/main/web
+    - ./module/product-admin/src/main/dist/web
+    - ./module/rank-admin/src/main/dist/web
+    - ./module/user-oauth-web/src/main/dist/web
+
+user:
+  defaultAdminUser:
+    username: admin
+    password: admin

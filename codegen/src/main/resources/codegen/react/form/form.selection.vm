@@ -1,0 +1,9 @@
+<Form.Item label={i18n.t("${entity.name}.${member.name}")} prop="${member.name}">
+    <Select value={this.state.form.${member.name}} onChange={${member.name} => this.formChange("${member.name}", ${member.name})}>
+    {
+    this.state.${member.name}Options.map(${member.name} => <Select.Option key={${member.name}.value}
+        label={${member.name}.label}
+        value={${member.name}.value}/>)
+    }
+    </Select>
+</Form.Item>

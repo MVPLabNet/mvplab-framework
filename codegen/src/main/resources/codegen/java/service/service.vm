@@ -1,0 +1,107 @@
+package ${packageName};
+
+
+import app.database.QueryV2;
+import app.database.Repository;
+
+#foreach ($importRef in $importRefs)
+import $importRef;
+#end
+import ${entity.basePackage}.web.api.${entity.shortName}.Create${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.Update${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.Delete${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.${entity.type}Response;
+import ${entity.basePackage}.web.api.${entity.shortName}.${entity.type}Query;
+import app.util.collection.QueryResponse;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import java.util.UUID;
+
+
+/**
+ * @author chi
+ */
+public class ${entity.type}Service {
+    @Inject
+    Repository<${entity.type}> repository;
+
+    public ${entity.type} get(String id) {
+        return repository.get(id);
+    }
+
+    public Optional<${entity.type}> findById(String id) {
+        QueryV2<${entity.type}> query = repository.queryV2("SELECT t FROM ${entity.type} t WHERE t.id=:id AND t.status!=:status");
+        query.param("id", id);
+        query.param("status", ${entity.type}Status.INACTIVE);
+        return query.findOne();
+    }
+
+    public QueryResponse<${entity.type}> find(${entity.type}Query query) {
+        QueryV2<${entity.type}> dbQuery = repository.queryV2("SELECT t FROM ${entity.type} t WHERE 1=1");
+        return dbQuery.limit(query.page, query.limit).sort(query.sortingField, query.desc).findAll();
+    }
+
+    @Transactional
+    public ${entity.type} create(Create${entity.type}Request request) {
+        ${entity.type} ${entity.shortName} = new ${entity.type}();
+
+        #if (!$entity.id.isGenerated)
+            ${entity.shortName}.${entity.id.name} = UUID.randomUUID().toString();
+        #end
+
+        #foreach ($member in $entity.members)
+            #if ($member.name.equals("createdTime") || $member.name.equals("updatedTime"))
+                $entity.shortName.$member.name = OffsetDateTime.now();
+            #elseif ($member.name.equals("createdBy") || $member.name.equals("updatedBy"))
+                $entity.shortName.$member.name = request.requestBy;
+            #else
+                $entity.shortName.$member.name = request.$member.name;
+            #end
+        #end
+
+        repository.insert(${entity.shortName});
+        return ${entity.shortName};
+    }
+
+    @Transactional
+    public ${entity.type} update(String id, Update${entity.type}Request request) {
+        ${entity.type} ${entity.shortName} = get(id);
+
+        #foreach ($member in $entity.members)
+            #if ($member.name.equals("updatedTime"))
+                $entity.shortName.$member.name = OffsetDateTime.now();
+            #elseif ($member.name.equals("updatedBy"))
+                $entity.shortName.$member.name = request.requestBy;
+            #elseif ($member.name.equals("createdBy") || $member.name.equals("createdTime"))
+            #else
+            if(request.$member.name != null){
+                $entity.shortName.$member.name = request.$member.name;
+            }
+            #end
+        #end
+        repository.update(${entity.shortName}.id, ${entity.shortName});
+        return ${entity.shortName};
+    }
+
+
+    @Transactional
+    public void delete(Delete${entity.type}Request request) {
+        List<String> toDelete = Lists.newArrayList();
+
+        for (String id : request.ids) {
+            ${entity.type} ${entity.shortName} = get(id);
+            if (${entity.shortName}.status == ${entity.type}Status.INACTIVE) {
+                toDelete.add(id);
+            } else {
+                ${entity.shortName}.status = ${entity.type}Status.INACTIVE;
+                ${entity.shortName}.updatedBy = request.requestBy;
+                ${entity.shortName}.updatedTime = OffsetDateTime.now();
+                repository.update(id, ${entity.shortName});
+            }
+          }
+
+        repository.batchDelete(toDelete);
+    }
+}

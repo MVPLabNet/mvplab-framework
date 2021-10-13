@@ -1,0 +1,11 @@
+<Form.Item label={i18n.t("${entity.name}.${member.name}")} prop="${member.name}">
+    <Input type="textarea" value={this.state.form.${member.name}}
+            onChange={value => this.formChange("${member.name}", value)}
+    #if($member.minLength)
+        minLength="${member.minLength}"
+    #end
+    #if($member.maxLength)
+        maxLength="${member.maxLength}"
+    #end
+    />
+</Form.Item>

@@ -1,0 +1,60 @@
+import java.time.Instant
+
+defaultTasks 'clean', 'build'
+
+subprojects {
+    if (!childProjects.isEmpty()) return    // ignore parent project
+
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.deprecation = true
+        options.compilerArgs += ['-Xlint:all', '-proc:none']
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    buildDir = "${rootDir}/build/${rootDir.relativePath(projectDir)}"
+
+    tasks.named('test') {
+        useJUnitPlatform()
+        failFast = true
+        testLogging.exceptionFormat 'full'
+    }
+
+    tasks.named('jar') {
+        // put parent name in final jar name, to resolve collision of child projects with same name under different parents
+        if (parent.depth > 0) {
+            archiveBaseName = "${parent.name}-${archiveBaseName.get()}"
+        }
+    }
+
+    afterEvaluate {
+        tasks.withType(Jar).configureEach {
+            manifest {
+                attributes 'Implementation-Title': project.name,
+                        'Implementation-Version': project.version,
+                        'Created-By': "${System.getProperty('java.version')} (${System.getProperty('java.vendor')})",
+                        'Built-With': "gradle ${project.gradle.gradleVersion}",
+                        'Build-Time': Instant.now().toString()
+            }
+        }
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    idea.module.inheritOutputDirs = true
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '5.4'
+}

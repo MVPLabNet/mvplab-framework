@@ -1,0 +1,60 @@
+package ${packageName};
+
+#foreach ($importRef in $importRefs)
+import $importRef;
+#end
+
+import ${entity.basePackage}.web.api.${entity.shortName}.Create${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.Update${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.Delete${entity.type}Request;
+import ${entity.basePackage}.web.api.${entity.shortName}.${entity.type}Response;
+import ${entity.basePackage}.web.api.${entity.shortName}.${entity.type}Query;
+import ${entity.basePackage}.web.api.${entity.type}WebService;
+import ${entity.basePackage}.service.${entity.type}Service;
+
+import app.util.collection.QueryResponse;
+import javax.inject.Inject;
+import app.util.exception.Errors;
+
+/**
+* @author chi
+*/
+public class ${entity.type}WebServiceImpl implements ${entity.type}WebService {
+    @Inject
+    ${entity.type}Service ${entity.shortName}Service;
+
+
+    @Override
+    public ${entity.type}Response get(String id) {
+        return response(${entity.shortName}Service.findById(id).orElseThrow(() -> Errors.notFound("Not Found, id={}", id));
+    }
+
+    @Override
+    public QueryResponse<${entity.type}Response> find(${entity.type}Query query) {
+        return ${entity.shortName}Service.find(query).map(this::response);
+    }
+
+    @Override
+    public ${entity.type}Response create(Create${entity.type}Request request) {
+        return response(${entity.shortName}Service.create(request));
+    }
+
+    @Override
+    public ${entity.type}Response update(String id, Update${entity.type}Request request) {
+        return response(${entity.shortName}Service.update(id, request));
+    }
+
+    @Override
+    public void delete(Delete${entity.type}Request request) {
+        ${entity.shortName}Service.delete(request);
+    }
+
+    private ${entity.type}Response response(${entity.type} ${entity.shortName}) {
+    ${entity.type}Response response = new ${entity.type}Response();
+    response.${entity.id.name} = ${entity.shortName}.${entity.id.name};
+    #foreach ($member in $entity.members)
+        response.$member.name = ${entity.shortName}.$member.name;
+    #end
+    return response;
+    }
+}

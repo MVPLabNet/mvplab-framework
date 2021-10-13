@@ -1,0 +1,11 @@
+<Form.Item label={i18n.t("${entity.name}.${member.name}")} prop="${member.name}">
+    <Input type="number" value={this.state.form.${member.name}}
+            onChange={value => this.formChange("${member.name}", value)}
+           #if($member.min)
+               min="${member.min}"
+           #end
+            #if($member.max)
+                max="${member.max}"
+            #end
+    />
+</Form.Item>

@@ -1,0 +1,125 @@
+import React from "react";
+import {#foreach ($uiComponent in $uiComponents) $uiComponent, #end Breadcrumb, Button, Card, Form} from "element-react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
+const i18n = window.i18n;
+export default class ${entity.type}Update extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.match.params.id,
+            form: {
+                #foreach ($member in $formMembers)
+                    #if($member.name != "createdTime" && $member.name != "createdBy" && $member.name != "updatedTime" && $member.name != "updatedBy")
+                        ${member.name}:null #if($foreach.hasNext),#end
+
+                    #end
+                #end
+            },
+            #foreach ($enumType in $entity.enumTypes)
+            ${enumType.name}Options: [
+                #foreach ($value in $enumType.values)
+                {
+                    label: "$value",
+                    value: "$value"
+                }#if($foreach.hasNext),#end
+
+                #end
+            ],
+            #end
+            rules: {
+                #foreach ($formRule in $formRules)
+                ${formRule.member.name}: [{
+                    #if ($formRule.required)
+                    required: true,
+                    #end
+                    #if ($formRule.type)
+                    type: '$formRule.type',
+                    #end
+                    message: i18n.t("${entity.name}.${formRule.member.name}Rule"),
+                    trigger: "blur"
+                }]#if($foreach.hasNext),#end
+
+                #end
+            }
+        };
+    }
+
+    componentDidMount() {
+        if (typeof this.state.id !== "undefined") {
+            window.ajax("/admin/api/${entity.group}${entity.shortName}/" + this.state.id)
+                .then((response) => {
+                    this.setState({form: response});
+                });
+        }
+    }
+
+    formChange(key, value) {
+        const form = this.state.form;
+        form[key] = value;
+        this.setState(form);
+    }
+
+    update() {
+        this.formRef.validate((valid) => {
+            if (valid) {
+                if (this.state.id) {
+                    window.ajax("/admin/api/${entity.group}${entity.shortName}/" + this.state.id, {
+                        method: "put",
+                        body: JSON.stringify(this.state.form)
+                    }).then(() => {
+                        this.props.history.push("/admin/${entity.shortName}/list");
+                    });
+                } else {
+                    window.ajax("/admin/api/${entity.group}${entity.shortName}", {
+                        method: "post",
+                        body: JSON.stringify(this.state.form)
+                    }).then(() => {
+                        this.props.history.push("/admin/${entity.shortName}/list");
+                    });
+                }
+            } else {
+                return false;
+            }
+        });
+    }
+
+    render() {
+        return (
+            <div className="page">
+                <div className="toolbar">
+                    <div className="toolbar-form">
+                        <Breadcrumb separator="/">
+                            <Breadcrumb.Item><Link to="/admin">{i18n.t("${entity.name}.home")}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/admin/${entity.shortName}/list">{i18n.t("${entity.name}.list")}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                {this.state.id
+                                    ? i18n.t("${entity.name}.update${entity.type}")
+                                    : i18n.t("${entity.name}.create${entity.type}")}</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+                    <div className="toolbar-buttons">
+                        <Button type="primary" onClick={() => this.update()}>{i18n.t("${entity.name}.save")}</Button>
+                        <Link to="/admin/${entity.shortName}/list">{i18n.t("${entity.name}.cancel")}</Link>
+                    </div>
+                </div>
+                <div className="body">
+                    <Card>
+                        <Form model={this.state.form} rules={this.state.rules} ref={(c) => {
+                            this.formRef = c;
+                        }} labelWidth="150">
+                            #foreach ($formItem in $formItems)
+                                ${formItem.html}
+                            #end
+                        </Form>
+                    </Card>
+                </div>
+            </div>
+        );
+    }
+}
+${entity.type}Update.propTypes = {
+    match: PropTypes.object.match,
+    history: PropTypes.object.history
+};

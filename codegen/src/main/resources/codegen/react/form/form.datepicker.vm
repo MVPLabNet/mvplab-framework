@@ -1,0 +1,8 @@
+<Form.Item label={i18n.t("${entity.name}.${member.name}")} prop="${member.name}">
+    <DatePicker value={typeof this.state.form.${member.name} === "string" ? new Date(this.state.form.${member.name}) : this.state.form.${member.name}}
+        placeholder="${member.name}"
+        onChange={(value) => {
+            this.formChange("${member.name}", value);
+        }}
+    />
+</Form.Item>

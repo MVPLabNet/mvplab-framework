@@ -1,0 +1,53 @@
+apply plugin: 'java-library'
+
+sourceSets {
+    test.compileClasspath += configurations.compileOnly
+    test.runtimeClasspath += configurations.compileOnly
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+def yarn(String dir, List<String> params) {
+    def isWindows = org.gradle.internal.os.OperatingSystem.current().isWindows()
+    def command = isWindows ? ['cmd', '/c', 'yarn'] : ['yarn']
+    command.addAll(params)
+    return {
+        workingDir dir
+        commandLine command
+    }
+}
+
+processResources {
+    doLast {
+        if (project.file('src/main/web/package.json').exists()) {
+            exec yarn("${projectDir}/src/main/web/", ['install'])
+            delete "${projectDir}/src/main/dist/web/"
+            exec yarn("${projectDir}/src/main/web/", ['release'])
+
+            copy {
+                from(project.file("src/main/dist/web")) {
+                    include('**/*')
+                }
+                into new File(sourceSets.main.output.resourcesDir, 'web')
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    compileJava {
+        doFirst {
+            options.compilerArgs = [
+                    '--module-path', classpath.asPath
+            ]
+            classpath = files()
+        }
+    }
+}

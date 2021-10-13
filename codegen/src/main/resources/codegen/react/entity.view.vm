@@ -1,0 +1,58 @@
+import React from "react";
+import {Breadcrumb, Button, Card, Form} from "element-react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
+const i18n = window.i18n;
+export default class ${entity.type}View extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.match.params.id,
+            form: {
+            }
+        };
+    }
+
+    componentDidMount() {
+        if (typeof this.state.id !== "undefined") {
+            window.ajax("/admin/api/${entity.group}${entity.shortName}/" + this.state.id)
+                .then((response) => {
+                    this.setState({form: response});
+                });
+        }
+    }
+
+    render() {
+        return (
+            <div className="page">
+                <div className="toolbar">
+                    <div className="toolbar-form">
+                        <Breadcrumb separator="/">
+                            <Breadcrumb.Item><Link to="/admin">{i18n.t("${entity.name}.home")}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to="/admin/${entity.shortName}/list">{i18n.t("${entity.name}.list")}</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item>{i18n.t("${entity.name}.view${entity.type}")}</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+                    <div className="toolbar-buttons">
+                        <Link to="/admin/${entity.shortName}/list">{i18n.t("${entity.name}.cancel")}</Link>
+                    </div>
+                </div>
+                <div className="body">
+                    <Card>
+                        #foreach($member in $entity.members)
+                        <Form.Item label={i18n.t("${entity.name}.${member.name}")} prop="${member.name}">
+                            {this.state.form.${member.name}}
+                        </Form.Item>
+                        #end
+                    </Card>
+                </div>
+            </div>
+        );
+    }
+}
+
+${entity.type}View.propTypes = {
+    match: PropTypes.object.match,
+    history: PropTypes.object.history
+};

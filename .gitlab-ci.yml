@@ -1,0 +1,26 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+    - export TAG_IMAGE=$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-`date +%Y%m%d-%H%M`
+    - docker tag "$CI_REGISTRY_IMAGE" $TAG_IMAGE
+    - docker push $TAG_IMAGE
+
+  only:
+    - master
+
+after_script:
+  - echo "End CI"
