@@ -1,12 +1,12 @@
 package app.web.impl;
 
 import app.web.UserInfo;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.container.ContainerRequestContext;
 
-import javax.annotation.Priority;
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.container.ContainerRequestContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Provider;
 
 /**
  * @author chi

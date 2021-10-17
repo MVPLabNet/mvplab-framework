@@ -8,11 +8,11 @@ import app.database.Statement;
 import app.util.exception.Errors;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Id;
+import jakarta.persistence.TypedQuery;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.Id;
-import javax.persistence.TypedQuery;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -150,7 +150,7 @@ public class RepositoryImpl<T> implements Repository<T> {
         }
         EntityManager em = database.em();
         try {
-            javax.persistence.Query query = em.createQuery(new SQLBuilder(entityName, idFieldName, "").deleteByIdsSQL(ids.size()));
+            jakarta.persistence.Query query = em.createQuery(new SQLBuilder(entityName, idFieldName, "").deleteByIdsSQL(ids.size()));
             for (int i = 0; i < ids.size(); i++) {
                 query.setParameter(i, ids.get(i));
             }
@@ -164,7 +164,7 @@ public class RepositoryImpl<T> implements Repository<T> {
     public int execute(String sql, Object... params) {
         EntityManager em = database.em();
         try {
-            javax.persistence.Query query = em.createQuery(sql);
+            jakarta.persistence.Query query = em.createQuery(sql);
             for (int i = 0; i < params.length; i++) {
                 query.setParameter(i, params[i]);
             }

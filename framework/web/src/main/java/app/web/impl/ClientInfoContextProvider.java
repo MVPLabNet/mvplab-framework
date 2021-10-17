@@ -5,11 +5,11 @@ import app.App;
 import app.web.ClientInfo;
 import app.web.WebOptions;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.HttpHeaders;
+import jakarta.inject.Inject;
+import jakarta.inject.Provider;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.Cookie;
+import jakarta.ws.rs.core.HttpHeaders;
 import java.util.Map;
 import java.util.UUID;
 

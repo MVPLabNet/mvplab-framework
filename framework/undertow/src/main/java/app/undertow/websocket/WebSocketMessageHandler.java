@@ -2,7 +2,7 @@ package app.undertow.websocket;
 
 import app.message.MessageHandler;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 /**
  * @author chi

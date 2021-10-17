@@ -1,8 +1,8 @@
 apply plugin: 'java-library'
 
 sourceSets {
-    test.compileClasspath += configurations.compileOnly
-    test.runtimeClasspath += configurations.compileOnly
+    test.compileClasspath += configurations.compileClasspath
+    test.runtimeClasspath += configurations.compileClasspath
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

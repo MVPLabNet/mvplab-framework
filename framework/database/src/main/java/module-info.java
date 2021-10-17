@@ -2,8 +2,8 @@
  * @author chi
  */
 module app.database {
-    requires transitive java.transaction;
-    requires transitive java.persistence;
+    requires transitive jakarta.transaction;
+    requires transitive jakarta.persistence;
     requires transitive java.sql;
     requires transitive java.management;
     requires transitive java.xml.bind;

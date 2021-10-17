@@ -8,7 +8,7 @@ import com.google.common.base.Strings;
 import org.glassfish.jersey.client.JerseyClient;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
 
-import javax.ws.rs.client.WebTarget;
+import jakarta.ws.rs.client.WebTarget;
 
 /**
  * @author chi

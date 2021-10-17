@@ -3,7 +3,7 @@ package app.exception;
 import app.util.exception.Errors;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

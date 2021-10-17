@@ -6,7 +6,7 @@ import app.web.WebModule;
  */
 module app.web {
     requires transitive app.template;
-    requires jedis;
+    requires redis.clients.jedis;
     requires jersey.common;
 
     exports app.web;

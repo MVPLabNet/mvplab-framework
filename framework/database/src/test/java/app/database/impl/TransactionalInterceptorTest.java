@@ -6,8 +6,8 @@ import app.test.Install;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.WebApplicationException;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

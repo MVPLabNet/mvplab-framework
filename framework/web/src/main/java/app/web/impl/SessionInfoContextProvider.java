@@ -4,9 +4,9 @@ package app.web.impl;
 import app.web.SessionInfo;
 import app.web.SessionManager;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.ws.rs.container.ContainerRequestContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Provider;
+import jakarta.ws.rs.container.ContainerRequestContext;
 
 /**
  * @author chi

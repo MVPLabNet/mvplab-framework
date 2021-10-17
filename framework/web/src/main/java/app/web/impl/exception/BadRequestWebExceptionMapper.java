@@ -1,11 +1,10 @@
 package app.web.impl.exception;
 
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.Response;
 import org.glassfish.jersey.process.internal.RequestScoped;
-
-import javax.annotation.Priority;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.core.Response;
 
 @RequestScoped
 @Priority(Priorities.USER - 1000)

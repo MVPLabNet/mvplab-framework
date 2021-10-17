@@ -7,6 +7,7 @@ import app.Configurable;
 import app.Environment;
 import app.Profile;
 import app.app.impl.AppOptions;
+import app.app.impl.MessageInterpolatorImpl;
 import app.app.impl.ModuleBinder;
 import app.app.impl.exception.BadRequestExceptionMapper;
 import app.app.impl.exception.ForbiddenExceptionMapper;
@@ -34,8 +35,10 @@ import com.google.common.graph.Graph;
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.ImmutableGraph;
 import com.google.common.graph.MutableGraph;
+import jakarta.validation.Configuration;
+import jakarta.validation.Validation;
+import jakarta.ws.rs.core.Application;
 import org.glassfish.hk2.api.ServiceLocator;
-import org.glassfish.hk2.utilities.general.internal.MessageInterpolatorImpl;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.server.ContainerRequest;
@@ -47,9 +50,6 @@ import org.glassfish.jersey.server.validation.ValidationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.validation.Configuration;
-import javax.validation.Validation;
-import javax.ws.rs.core.Application;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
@@ -214,7 +214,7 @@ public class JerseyApp extends Application implements App {
     public final void register(Object singleton) {
         checkNotNull(singleton, "resource can't null");
         if (isResource(singleton.getClass())) {
-            javax.ws.rs.Path path = singleton.getClass().getDeclaredAnnotation(javax.ws.rs.Path.class);
+            jakarta.ws.rs.Path path = singleton.getClass().getDeclaredAnnotation(jakarta.ws.rs.Path.class);
             if (resourceSingletons.containsKey(path.value())) {
                 logger.info("override resource, path={}, original={}, resource={}", path.value(), resourceSingletons.get(path.value()), singleton.getClass());
             }
@@ -227,7 +227,7 @@ public class JerseyApp extends Application implements App {
     public final void register(Class<?> type) {
         checkNotNull(type, "resource can't null");
         if (isResource(type)) {
-            javax.ws.rs.Path path = type.getDeclaredAnnotation(javax.ws.rs.Path.class);
+            jakarta.ws.rs.Path path = type.getDeclaredAnnotation(jakarta.ws.rs.Path.class);
             if (resourceClasses.containsKey(path.value())) {
                 logger.info("override resource, path={}, original={}, resource={}", path.value(), resourceClasses.get(path.value()), type);
             }
@@ -238,7 +238,7 @@ public class JerseyApp extends Application implements App {
     }
 
     private boolean isResource(Class<?> resourceClass) {
-        return resourceClass.isAnnotationPresent(javax.ws.rs.Path.class);
+        return resourceClass.isAnnotationPresent(jakarta.ws.rs.Path.class);
     }
 
     public final void property(String name, Object value) {

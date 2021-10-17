@@ -7,17 +7,17 @@ import app.database.Query;
 import app.util.exception.Errors;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.SharedCacheMode;
+import jakarta.persistence.ValidationMode;
+import jakarta.persistence.spi.ClassTransformer;
+import jakarta.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.spi.PersistenceUnitTransactionType;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl;
 import org.hibernate.jpa.boot.internal.PersistenceUnitInfoDescriptor;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.SharedCacheMode;
-import javax.persistence.ValidationMode;
-import javax.persistence.spi.ClassTransformer;
-import javax.persistence.spi.PersistenceUnitInfo;
-import javax.persistence.spi.PersistenceUnitTransactionType;
 import javax.sql.DataSource;
 import java.net.URL;
 import java.nio.file.Path;
@@ -113,7 +113,7 @@ public class DatabaseImpl implements Database {
     public int execute(String sql, Object... params) {
         EntityManager em = em();
         try {
-            javax.persistence.Query query = em.createQuery(sql);
+            jakarta.persistence.Query query = em.createQuery(sql);
             for (int i = 0; i < params.length; i++) {
                 query.setParameter(i, params[i]);
             }

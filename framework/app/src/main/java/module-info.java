@@ -7,13 +7,14 @@ module app.app {
     requires jersey.common;
     requires jersey.media.json.jackson;
     requires jersey.hk2;
-    requires hk2.api;
-    requires hk2.utils;
+    requires org.glassfish.hk2.api;
+    requires org.glassfish.hk2.utilities;
+    requires jakarta.ws.rs;
     requires jersey.bean.validation;
     requires javassist;
 
     requires jul.to.slf4j;
-    requires jackson.annotations;
+    requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.dataformat.yaml;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;

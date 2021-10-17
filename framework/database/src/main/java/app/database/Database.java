@@ -1,6 +1,6 @@
 package app.database;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.sql.SQLException;
 
 /**

@@ -3,7 +3,7 @@ package app.app;
 import app.app.impl.ProviderSupplierBrideBuilder;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.security.AccessController;

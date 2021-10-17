@@ -3,8 +3,8 @@ package app.service.impl;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.client.ClientRequestFilter;
 import java.io.IOException;
 import java.io.InputStream;
 

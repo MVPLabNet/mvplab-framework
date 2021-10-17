@@ -1,9 +1,8 @@
 package app.database.impl;
 
+import jakarta.transaction.Transactional;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-
-import javax.transaction.Transactional;
 
 /**
  * @author chi

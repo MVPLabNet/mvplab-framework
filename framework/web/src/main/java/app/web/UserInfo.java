@@ -1,6 +1,6 @@
 package app.web;
 
-import javax.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.SecurityContext;
 import java.util.List;
 
 /**

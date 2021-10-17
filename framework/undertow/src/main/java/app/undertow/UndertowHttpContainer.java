@@ -41,13 +41,13 @@
 package app.undertow;
 
 import app.app.JerseyApp;
+import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ApplicationHandler;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spi.Container;
 import org.glassfish.jersey.spi.ExecutorServiceProvider;
 import org.glassfish.jersey.spi.ScheduledExecutorServiceProvider;
 
-import javax.ws.rs.ApplicationPath;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 

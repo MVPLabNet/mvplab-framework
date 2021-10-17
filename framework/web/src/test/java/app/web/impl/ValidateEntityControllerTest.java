@@ -9,11 +9,11 @@ import org.glassfish.jersey.server.ContainerResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

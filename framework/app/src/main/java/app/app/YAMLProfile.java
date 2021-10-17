@@ -1,6 +1,7 @@
 package app.app;
 
 import app.Profile;
+import app.app.impl.MessageInterpolatorImpl;
 import app.resource.ClasspathResourceRepository;
 import app.resource.CompositeResourceRepository;
 import app.resource.FileResourceRepository;
@@ -13,11 +14,10 @@ import app.util.type.ClassValidator;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.glassfish.hk2.utilities.general.internal.MessageInterpolatorImpl;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;

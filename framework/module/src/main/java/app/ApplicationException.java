@@ -1,8 +1,8 @@
 package app;
 
+import jakarta.ws.rs.WebApplicationException;
 import org.slf4j.helpers.MessageFormatter;
 
-import javax.ws.rs.WebApplicationException;
 
 /**
  * @author chi

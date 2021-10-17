@@ -3,9 +3,9 @@ package app.web;
 import app.web.impl.SessionInfoImpl;
 import app.web.impl.SessionRepository;
 
-import javax.inject.Inject;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.Cookie;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.Cookie;
 import java.util.UUID;
 
 /**

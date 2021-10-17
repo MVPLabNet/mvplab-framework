@@ -6,11 +6,11 @@ import app.web.WebOptions;
 import app.web.WebRoot;
 import com.google.common.io.Files;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.CacheControl;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.CacheControl;
+import jakarta.ws.rs.core.EntityTag;
+import jakarta.ws.rs.core.Request;
+import jakarta.ws.rs.core.Response;
 import java.util.Optional;
 
 /**

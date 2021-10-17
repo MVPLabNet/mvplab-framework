@@ -17,7 +17,7 @@
 package app;
 
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
 
 public interface LinkedBindingBuilder<T> extends ScopedBindingBuilder {
     ScopedBindingBuilder to(Class<? extends T> implementation);

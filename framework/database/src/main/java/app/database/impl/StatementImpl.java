@@ -4,10 +4,10 @@ import app.database.Database;
 import app.database.Statement;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Maps;
+import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +39,7 @@ public class StatementImpl implements Statement {
         Stopwatch watch = Stopwatch.createStarted();
         EntityManager em = em();
         try {
-            javax.persistence.Query query = em.createQuery(sql.sql());
+            jakarta.persistence.Query query = em.createQuery(sql.sql());
             for (Map.Entry<String, Object> entry : params.entrySet()) {
                 Object value = entry.getValue();
                 query.setParameter(entry.getKey(), value);

@@ -1,10 +1,10 @@
 package app.app;
 
 import app.AbstractModule;
+import jakarta.ws.rs.WebApplicationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.WebApplicationException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,7 +60,11 @@ public class JerseyAppTest {
         }
     }
 
-    static class TestModule2 extends TestModule1 {
+    static class TestModule2 extends AbstractModule {
+        public TestModule2() {
+            super(TestModule3.class);
+        }
+
         @Override
         protected void configure() {
 

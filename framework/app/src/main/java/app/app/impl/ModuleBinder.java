@@ -5,14 +5,14 @@ import app.Binder;
 import app.LinkedBindingBuilder;
 import app.ScopedBindingBuilder;
 import com.google.common.collect.Lists;
+import jakarta.annotation.Priority;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.glassfish.hk2.api.InterceptionService;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.internal.inject.Binding;
 
-import javax.annotation.Priority;
-import javax.inject.Provider;
-import javax.inject.Singleton;
+import jakarta.inject.Provider;
+import jakarta.inject.Singleton;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.List;

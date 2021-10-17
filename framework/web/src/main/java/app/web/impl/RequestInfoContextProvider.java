@@ -3,10 +3,10 @@ package app.web.impl;
 import app.web.RequestInfo;
 import com.google.common.collect.Maps;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.UriInfo;
+import jakarta.inject.Inject;
+import jakarta.inject.Provider;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.UriInfo;
 import java.util.Map;
 import java.util.Optional;
 

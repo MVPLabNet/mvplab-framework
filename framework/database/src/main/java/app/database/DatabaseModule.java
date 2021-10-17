@@ -10,7 +10,7 @@ import app.database.impl.TransactionalInterceptor;
 import app.util.exception.Errors;
 import com.google.common.collect.ImmutableList;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.nio.file.Path;
 import java.util.List;
 

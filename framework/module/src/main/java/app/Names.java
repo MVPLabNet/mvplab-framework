@@ -1,6 +1,6 @@
 package app;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 

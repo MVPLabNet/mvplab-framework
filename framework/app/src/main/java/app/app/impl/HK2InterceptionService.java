@@ -7,12 +7,14 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.glassfish.hk2.api.Filter;
 import org.glassfish.hk2.api.InterceptionService;
 
+import jakarta.inject.Singleton;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+@Singleton
 public class HK2InterceptionService implements InterceptionService {
     private final Map<Class<? extends Annotation>, MethodInterceptor> interceptors = Maps.newHashMap();
 

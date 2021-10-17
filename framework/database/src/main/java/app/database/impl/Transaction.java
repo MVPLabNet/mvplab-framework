@@ -1,6 +1,6 @@
 package app.database.impl;
 
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityTransaction;
 import java.sql.SQLException;
 
 

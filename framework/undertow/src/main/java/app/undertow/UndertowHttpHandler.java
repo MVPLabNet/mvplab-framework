@@ -6,10 +6,10 @@ import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.HttpString;
+import jakarta.ws.rs.core.SecurityContext;
 import org.glassfish.jersey.internal.PropertiesDelegate;
 import org.glassfish.jersey.server.ContainerRequest;
 
-import javax.ws.rs.core.SecurityContext;
 import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.security.Principal;

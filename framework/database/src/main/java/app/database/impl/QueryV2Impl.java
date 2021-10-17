@@ -5,8 +5,8 @@ import app.database.QueryV2;
 import app.util.collection.QueryResponse;
 import com.google.common.collect.Maps;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

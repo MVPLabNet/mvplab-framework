@@ -3,10 +3,10 @@ package app.database.impl;
 import app.database.Repository;
 import app.util.exception.Errors;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.transaction.Transactional;
-import javax.ws.rs.WebApplicationException;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
 
 /**
  * @author chi

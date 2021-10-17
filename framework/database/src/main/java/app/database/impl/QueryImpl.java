@@ -5,8 +5,8 @@ import app.util.collection.QueryResponse;
 import com.google.common.collect.Lists;
 import app.database.Query;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

@@ -13,7 +13,7 @@ import ${entity.basePackage}.web.api.${entity.type}WebService;
 import ${entity.basePackage}.service.${entity.type}Service;
 
 import app.util.collection.QueryResponse;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import app.util.exception.Errors;
 
 /**
