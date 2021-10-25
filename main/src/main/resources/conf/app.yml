@@ -44,6 +44,12 @@ web:
     - ./module/rank-admin/src/main/dist/web
     - ./module/user-oauth-web/src/main/dist/web
 
+swagger:
+  apiEnabled: true
+  webAPIEnabled: true
+  adminAPIEnabled: false
+
+
 user:
   defaultAdminUser:
     username: admin

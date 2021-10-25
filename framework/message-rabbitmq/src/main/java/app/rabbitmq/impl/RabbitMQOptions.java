@@ -1,7 +1,7 @@
 package app.rabbitmq.impl;
 
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author chi

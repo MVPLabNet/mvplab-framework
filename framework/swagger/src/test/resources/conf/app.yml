@@ -1,0 +1,15 @@
+app:
+  baseURL: http://localhost:8080/
+  name: test
+  language: en
+  env: DEV
+
+database:
+  url: jdbc:hsqldb:mem:db;sql.syntax_mys=true
+  createTableEnabled: true
+  showSQLEnabled: true
+  dialect: org.hibernate.dialect.HSQLDialect
+  driver: org.hsqldb.jdbc.JDBCDriver
+
+test:
+  url: http://localhost:8080/

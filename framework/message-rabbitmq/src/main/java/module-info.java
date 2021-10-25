@@ -6,7 +6,7 @@ module app.rabbitmq {
     requires transitive app.message;
 
     requires com.rabbitmq.client;
-    requires commons.pool2;
+    requires org.apache.commons.pool2;
 
     exports app.rabbitmq;
 }

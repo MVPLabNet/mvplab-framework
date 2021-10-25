@@ -4,6 +4,6 @@
 module app.redis {
     requires transitive app.module;
     requires transitive app.cache;
-    requires jedis;
+    requires redis.clients.jedis;
     exports app.cache.redis;
 }

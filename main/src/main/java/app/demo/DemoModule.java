@@ -18,9 +18,7 @@ public class DemoModule extends AbstractWebModule {
     protected void configure() {
         module(DatabaseModule.class)
             .entity(DemoEntity.class);
-
         bind(DemoEntityService.class);
-        
         bindController(HelloWorldController.class);
     }
 }

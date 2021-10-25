@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationModule;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -36,7 +36,7 @@ public final class JSON {
         OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
         OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         OBJECT_MAPPER.registerModule(new JavaTimeModule());
-        OBJECT_MAPPER.registerModule(new JaxbAnnotationModule());
+        OBJECT_MAPPER.registerModule(new JakartaXmlBindAnnotationModule());
         OBJECT_MAPPER.registerModule(new JSONModule());
     }
 

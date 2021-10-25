@@ -6,7 +6,7 @@ module app.database {
     requires transitive jakarta.persistence;
     requires transitive java.sql;
     requires transitive java.management;
-    requires transitive java.xml.bind;
+    requires transitive jakarta.xml.bind;
     requires transitive app.module;
 
     requires org.hibernate.orm.core;

@@ -3,7 +3,7 @@
  */
 module app.module {
     requires transitive com.google.common;
-    requires transitive java.xml.bind;
+    requires transitive jakarta.xml.bind;
     requires transitive org.aopalliance;
     requires transitive jakarta.annotation;
     requires transitive jakarta.inject;
@@ -18,7 +18,7 @@ module app.module {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
-    requires com.fasterxml.jackson.module.jaxb;
+    requires com.fasterxml.jackson.module.jakarta.xmlbind;
 
     requires org.objectweb.asm;
     requires org.hibernate.validator;

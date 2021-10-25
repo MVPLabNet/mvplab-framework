@@ -63,10 +63,10 @@ project(':framework:module') {
         api 'jakarta.ws.rs:jakarta.ws.rs-api:3.0.0'
         api group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.0.1'
         api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
-        api "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${jacksonVersion}"
         api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
         api "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
         api "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
+        api group: 'com.fasterxml.jackson.module', name: 'jackson-module-jakarta-xmlbind-annotations', version: '2.13.0'
         api group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.30'
 
         implementation "org.javassist:javassist:${javassistVersion}"
@@ -150,6 +150,28 @@ project(':framework:service') {
             exclude group: 'org.glassfish.hk2.external'
             exclude group: 'javax.xml.bind'
         }
+        testImplementation project(':framework:test')
+        testImplementation project(':framework:undertow')
+    }
+}
+
+project(':framework:swagger') {
+    apply from: file("${rootDir}/gradle/module.gradle")
+
+    dependencies {
+        api project(':framework:module')
+        api project(':framework:web')
+        implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.0'
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
+        implementation group: 'io.github.classgraph', name: 'classgraph', version: '4.8.128'
+        implementation group: 'io.swagger.core.v3', name: 'swagger-core', version: '2.1.11'
+        implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.1.11'
+        implementation group: 'io.swagger.core.v3', name: 'swagger-models', version: '2.1.11'
+        implementation group: 'io.swagger.core.v3', name: 'swagger-integration', version: '2.1.11'
+
+        implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
         testImplementation project(':framework:test')
         testImplementation project(':framework:undertow')
     }
@@ -375,6 +397,8 @@ project(':main') {
         implementation project(':framework:app')
         implementation project(':framework:logback')
         implementation project(':framework:web')
+        implementation project(':framework:service')
+        implementation project(':framework:swagger')
         implementation project(':framework:database')
         implementation project(':framework:admin')
         implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
