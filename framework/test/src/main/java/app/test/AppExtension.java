@@ -16,9 +16,8 @@ import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.Set;
@@ -75,18 +74,14 @@ public class AppExtension implements TestInstancePostProcessor, AfterTestExecuti
         if (app.isInstalled(DatabaseModule.class)) {
             AbstractModule module = app.module(DatabaseModule.class);
             Database database = module.require(Database.class);
-
-            EntityManager em = database.em();
-            EntityTransaction transaction = em.getTransaction();
             try {
                 logger.info("reset database");
-                transaction.begin();
-                em.createNativeQuery(HSQL_RESET_SQL).executeUpdate();
+                final Connection connection = database.dataSource().getConnection();
+                connection.createStatement().executeUpdate(HSQL_RESET_SQL);
+                connection.commit();
+                connection.close();
             } catch (Exception e) {
                 logger.error("failed to reset database", e);
-            } finally {
-                transaction.commit();
-                em.close();
             }
         }
     }

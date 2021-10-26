@@ -36,6 +36,7 @@ public class DatabaseImpl implements Database {
     private final DatabaseOptions options;
     private EntityManagerFactory emf;
     private Path dir;
+    private DataSource dataSource;
 
     public DatabaseImpl(DatabaseOptions options) {
         this.options = options;
@@ -87,14 +88,17 @@ public class DatabaseImpl implements Database {
         return properties;
     }
 
-    private DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl(resetBaseDir(options.url));
-        dataSource.setUsername(options.username);
-        dataSource.setPassword(options.password);
-        dataSource.setMaxTotal(options.pool.max);
-        dataSource.setMinIdle(options.pool.min);
-        return dataSource;
+    public DataSource dataSource() {
+        if (this.dataSource == null) {
+            BasicDataSource basicDataSource = new BasicDataSource();
+            basicDataSource.setUrl(resetBaseDir(options.url));
+            basicDataSource.setUsername(options.username);
+            basicDataSource.setPassword(options.password);
+            basicDataSource.setMaxTotal(options.pool.max);
+            basicDataSource.setMinIdle(options.pool.min);
+            this.dataSource = basicDataSource;
+        }
+        return this.dataSource;
     }
 
     private String resetBaseDir(String jdbcURL) {

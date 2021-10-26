@@ -1,6 +1,8 @@
 package app.database;
 
 import jakarta.persistence.EntityManager;
+
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
@@ -12,4 +14,6 @@ public interface Database {
     int execute(String sql, Object... params) throws SQLException;
 
     EntityManager em();
+
+    DataSource dataSource();
 }

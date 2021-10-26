@@ -79,7 +79,7 @@ project(':framework:module') {
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.2.0"
         testImplementation 'org.mockito:mockito-core:2.17.0'
-        testImplementation 'org.hsqldb:hsqldb:2.4.0'
+        testImplementation 'org.hsqldb:hsqldb:2.6.1'
     }
 }
 
@@ -360,7 +360,7 @@ project(':framework:test') {
         api 'org.mockito:mockito-core:2.17.0'
         api(group: 'org.glassfish.jersey.core', name: 'jersey-server', version: "${jerseyVersion}") {
         }
-        implementation 'org.hsqldb:hsqldb:2.4.0'
+        implementation 'org.hsqldb:hsqldb:2.6.1'
         implementation project(':framework:database')
         implementation project(':framework:logback')
         implementation(group: 'org.glassfish.jersey.core', name: 'jersey-common', version: "${jerseyVersion}") {
@@ -404,7 +404,7 @@ project(':main') {
         implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
         implementation 'mysql:mysql-connector-java:8.0.11'
         implementation group: 'org.liquibase', name: 'liquibase-core', version: '3.6.2'
-        implementation 'org.hsqldb:hsqldb:2.4.0'
+        implementation 'org.hsqldb:hsqldb:2.6.1'
         implementation "org.apache.commons:commons-dbcp2:${commonDBCPVersion}"
         implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
     }
