@@ -22,6 +22,11 @@ public class UserInfoImpl implements UserInfo {
     }
 
     @Override
+    public String tenantId() {
+        return null;
+    }
+
+    @Override
     public String username() {
         return ip;
     }

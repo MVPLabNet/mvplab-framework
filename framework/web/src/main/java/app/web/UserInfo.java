@@ -1,6 +1,7 @@
 package app.web;
 
 import jakarta.ws.rs.core.SecurityContext;
+
 import java.util.List;
 
 /**
@@ -8,6 +9,8 @@ import java.util.List;
  */
 public interface UserInfo extends SecurityContext {
     String id();
+    
+    String tenantId();
 
     String username();
 
